@@ -1,0 +1,2 @@
+no=personal.czg.rpc.fault.NoRetry
+fixedInterval=personal.czg.rpc.fault.FixedIntervalRetry
