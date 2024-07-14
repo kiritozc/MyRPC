@@ -1,0 +1,3 @@
+jdk=personal.czg.rpc.serializer.JdkSerializer
+hessian=personal.czg.rpc.serializer.HessianSerializer
+json=personal.czg.rpc.serializer.JsonSerializer

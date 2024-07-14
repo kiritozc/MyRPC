@@ -18,6 +18,7 @@ import personal.czg.rpc.registry.Registry;
 import personal.czg.rpc.registry.RegistryFactory;
 import personal.czg.rpc.serializer.JdkSerializer;
 import personal.czg.rpc.serializer.Serializer;
+import personal.czg.rpc.serializer.SerializerFactory;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
@@ -29,7 +30,7 @@ public class ServiceProxy implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        Serializer serializer = new JdkSerializer();
+        Serializer serializer = SerializerFactory.getInstance(RpcApplication.getRpcConfig().getSerializer());
 
         //帮消费端构造请求
         String serviceName = method.getDeclaringClass().getName();

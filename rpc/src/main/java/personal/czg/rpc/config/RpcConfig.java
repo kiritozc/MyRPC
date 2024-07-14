@@ -2,6 +2,8 @@ package personal.czg.rpc.config;
 
 import lombok.Data;
 import personal.czg.rpc.constant.RetryConfig;
+import personal.czg.rpc.constant.SerializerKeys;
+import personal.czg.rpc.serializer.Serializer;
 
 /**
  * 存储所有配置项
@@ -31,4 +33,6 @@ public class RpcConfig {
      * 重试机制
      */
     private String retryStrategy = RetryConfig.FIXED_INTERVAL;
+
+    private String serializer = SerializerKeys.JSON;
 }

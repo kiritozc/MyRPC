@@ -5,11 +5,13 @@ import io.vertx.core.buffer.Buffer;
 import io.vertx.core.http.HttpServerRequest;
 import io.vertx.core.http.HttpServerResponse;
 import lombok.extern.slf4j.Slf4j;
+import personal.czg.rpc.RpcApplication;
 import personal.czg.rpc.model.RpcRequest;
 import personal.czg.rpc.model.RpcResponse;
 import personal.czg.rpc.registry.LocalRegistry;
 import personal.czg.rpc.serializer.JdkSerializer;
 import personal.czg.rpc.serializer.Serializer;
+import personal.czg.rpc.serializer.SerializerFactory;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -23,7 +25,7 @@ import java.lang.reflect.Method;
 public class HttpServerHandler implements Handler<HttpServerRequest> {
     @Override
     public void handle(HttpServerRequest httpServerRequest) {
-        final Serializer serializer = new JdkSerializer();
+        final Serializer serializer = SerializerFactory.getInstance(RpcApplication.getRpcConfig().getSerializer());
         System.out.println("收到请求："+httpServerRequest.method()+" "+httpServerRequest.uri());
         // 异步处理HTTP请求
         httpServerRequest.bodyHandler(body->{
